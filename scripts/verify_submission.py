@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED = {
     "README.md",
-    "data/八家公司统一口径核心指标_最终验收.xlsx",
+    "data/八家公司统一口径核心指标.xlsx",
     "data/八家公司统一口径公司指标.csv",
     "data/八家公司统一口径核心指标.json",
     "config/unified_caliber_v1_0.json",
