@@ -1,0 +1,387 @@
+{
+  "metadata": {
+    "project": "Week 6 八家公司融资数据统一口径与横向复核",
+    "stage": 2,
+    "stage_name": "建立八家公司统一统计口径",
+    "caliber_version": "v1.0-draft",
+    "status": "PENDING_USER_ACCEPTANCE",
+    "generated_date": "2026-07-30",
+    "company_count": 8,
+    "companies": [
+      {
+        "company_id": "301563",
+        "company_name": "云汉芯城"
+      },
+      {
+        "company_id": "001282",
+        "company_name": "三联锻造"
+      },
+      {
+        "company_id": "301581",
+        "company_name": "黄山谷捷"
+      },
+      {
+        "company_id": "603418",
+        "company_name": "友升股份"
+      },
+      {
+        "company_id": "688758",
+        "company_name": "赛分科技"
+      },
+      {
+        "company_id": "688775",
+        "company_name": "影石创新"
+      },
+      {
+        "company_id": "920100",
+        "company_name": "三协电机"
+      },
+      {
+        "company_id": "920116",
+        "company_name": "星图测控"
+      }
+    ],
+    "primary_fact_source_rule": "所有公司事实以对应招股说明书为主要依据",
+    "data_modification_performed": false,
+    "current_step_boundary": "只建立规则；不修改八家公司原始事件、金额、主体分类或比较结论"
+  },
+  "scope": {
+    "issuer_level_only": true,
+    "pre_ipo_cutoff": "纳入IPO公开发行前已经完成或明确披露的发行人层面股权事项；排除IPO公开发行本身",
+    "include_neeq_directional_issuance": true,
+    "exclude_subsidiary_only_transactions": true,
+    "establishment_contribution_treatment": "单独保留为设立出资，不计入上市前融资轮次",
+    "unknown_information_policy": "保持空值并标记UNDISCLOSED或PENDING_REVIEW，不推测、不填0"
+  },
+  "record_layers": [
+    {
+      "layer_id": "L1_LEGAL_EVENT",
+      "name": "法律/工商事件层",
+      "purpose": "保留招股书披露的设立、增资、转让、改制、代持等原始事项"
+    },
+    {
+      "layer_id": "L2_TRANSACTION_LEG",
+      "name": "交易组成部分层",
+      "purpose": "把同一事件中的增资、老股转让、非现金出资等分别记录"
+    },
+    {
+      "layer_id": "L3_FINANCING_ROUND",
+      "name": "标准化融资轮次层",
+      "purpose": "按同一商业融资安排归并，用于横向融资轮次统计"
+    },
+    {
+      "layer_id": "L4_INVESTOR_PARTY",
+      "name": "法律投资主体层",
+      "purpose": "记录直接认购人、受让人或其他直接交易主体"
+    },
+    {
+      "layer_id": "L5_INVESTMENT_SYSTEM",
+      "name": "投资体系层",
+      "purpose": "在证据充分时合并同一管理、控制或代表投资关系下的多个主体"
+    },
+    {
+      "layer_id": "L6_EVIDENCE",
+      "name": "证据层",
+      "purpose": "保留PDF页码、正文页码、原文、披露值、计算输入和人工判断依据"
+    }
+  ],
+  "event_classification": {
+    "legal_event_types": [
+      "ESTABLISHMENT",
+      "CAPITAL_INCREASE",
+      "DIRECTIONAL_ISSUANCE",
+      "EQUITY_TRANSFER",
+      "MIXED_TRANSACTION",
+      "EMPLOYEE_EQUITY_INCENTIVE",
+      "CAPITAL_RESERVE_CONVERSION",
+      "OVERALL_CHANGE",
+      "NOMINEE_HOLDING_FORMATION",
+      "NOMINEE_HOLDING_RELEASE",
+      "INTERNAL_RESTRUCTURING",
+      "SHARE_SPLIT_OR_TECHNICAL_CHANGE",
+      "OTHER_EQUITY_CHANGE",
+      "UNRESOLVED"
+    ],
+    "fund_flow_types": [
+      "TO_ISSUER_CASH",
+      "TO_ISSUER_NON_CASH",
+      "TO_SELLING_SHAREHOLDER",
+      "MIXED_SPLIT_REQUIRED",
+      "NO_NEW_ECONOMIC_RESOURCE",
+      "UNDISCLOSED"
+    ],
+    "financing_round_inclusion": [
+      "发行人通过增资、定向发行或其他新增权益发行取得现金对价",
+      "发行人通过新增权益发行取得可确认的非现金资产，金额单独列示",
+      "员工、管理层或员工持股平台认购新增权益且对价进入发行人",
+      "原股东追加认购新增权益且对价进入发行人",
+      "混合交易中存在发行人融资组成部分；整组商业安排计为一轮，组成部分分别记录"
+    ],
+    "financing_round_exclusion": [
+      "公司设立出资",
+      "单纯存量股权转让",
+      "整体变更或净资产折股",
+      "资本公积、未分配利润或盈余公积转增",
+      "代持形成或代持解除",
+      "同一控制下内部架构调整",
+      "拆股、股份数量技术调整或未带来新增经济资源的股本变化",
+      "IPO公开发行本身"
+    ],
+    "round_grouping_rules": {
+      "primary_rule": "以同一商业融资安排为一轮，不以工商变更次数、投资者人数或交易组成部分数量直接计数",
+      "merge_evidence": [
+        "招股书明确称为同一轮、同次发行或同一组交易",
+        "同一协议或相互关联的协议",
+        "同一决议且交易互为条件",
+        "同一整体定价、交割或资金安排",
+        "同一交易目的并由招股书合并披露"
+      ],
+      "not_sufficient_alone": [
+        "仅日期相同",
+        "仅发生在同一个月",
+        "仅投资者名称相近",
+        "仅在同一次工商登记中出现"
+      ],
+      "staged_registration": "同一协议分批办理工商登记或股份登记，原则上仍计一轮",
+      "multiple_investors": "同一轮多名投资者共同参与，只计一轮融资，主体分别计数",
+      "follow_on": "同一投资者在不同时间依据独立协议追加投资，分别计轮次",
+      "uncertain": "证据不足时标记PENDING_REVIEW，不自动合并或拆分"
+    }
+  },
+  "metrics": {
+    "financing_round_count": {
+      "metric_id": "M01",
+      "definition": "符合纳入规则的标准化融资轮次数量",
+      "unit": "轮",
+      "count_level": "L3_FINANCING_ROUND",
+      "allowed_status": [
+        "INCLUDED",
+        "EXCLUDED",
+        "PENDING_REVIEW"
+      ],
+      "key_exclusion": "原始事件总数、交易笔数和投资主体数不得替代融资轮次"
+    },
+    "company_financing_amount": {
+      "metric_id": "M02",
+      "definition": "投资者因取得发行人新增权益而支付或约定支付给发行人的交易总对价（毛额）",
+      "unit_standard": "人民币万元",
+      "amount_priority": [
+        "招股书直接披露的认购总额、投资款或募集资金总额",
+        "由招股书直接披露的投资者金额加总得到的计算值",
+        "由招股书披露的新增股份/注册资本与认购价格计算得到的计算值",
+        "仅披露新增注册资本但未披露溢价或总对价时，公司融资金额记为UNDISCLOSED"
+      ],
+      "gross_or_net": "核心口径使用发行费用扣除前的毛融资额；净额另设字段",
+      "cash_non_cash": "现金与非现金融资分列；不得直接混为现金融资总额",
+      "registered_capital_rule": "新增注册资本或新增股本不是公司融资金额，只是资本结构字段",
+      "value_nature_required": [
+        "DISCLOSED",
+        "CALCULATED_FROM_DISCLOSED_INPUTS",
+        "UNDISCLOSED"
+      ]
+    },
+    "equity_transfer_amount": {
+      "metric_id": "M03",
+      "definition": "受让方向原股东支付的存量股权交易对价",
+      "unit_standard": "人民币万元",
+      "issuer_financing_flag": false,
+      "zero_rule": "只有原文明示零对价或无偿转让时才记录0",
+      "undisclosed_rule": "未披露不得记录为0，不得按持股比例或其他交易平均分摊",
+      "mixed_transaction_rule": "与增资同时发生时单独拆分，不计入公司融资金额"
+    },
+    "legal_investor_party_count": {
+      "metric_id": "M04",
+      "definition": "在纳入范围内直接认购新增权益或受让股权的唯一法律交易主体数量",
+      "count_level": "L4_INVESTOR_PARTY",
+      "includes": [
+        "公司",
+        "合伙企业",
+        "基金载体",
+        "自然人",
+        "员工持股平台"
+      ],
+      "deduplication": "优先按统一社会信用代码/登记号；缺失时按标准化全称和明确名称映射",
+      "repeat_investment": "同一主体参与多轮只计一个唯一主体，但保留参与次数",
+      "represented_investment": "直接名义股东与被代表基金分层记录，不得相互替代",
+      "required_subcounts": [
+        "organization_count",
+        "natural_person_count",
+        "new_entry_party_count",
+        "existing_holder_follow_on_count",
+        "confirmed_pevc_legal_party_count",
+        "candidate_pevc_legal_party_count"
+      ]
+    },
+    "investment_system_count": {
+      "metric_id": "M05",
+      "definition": "基于招股书明确披露的共同管理、控制、代表投资或同一员工计划关系形成的投资组织体系数量",
+      "count_level": "L5_INVESTMENT_SYSTEM",
+      "merge_evidence": [
+        "招股书明确披露同一基金管理人或管理机构",
+        "招股书明确披露控制关系",
+        "招股书明确披露某主体代表某基金投资",
+        "招股书明确披露同一员工持股计划或平台体系"
+      ],
+      "insufficient_evidence": [
+        "主体名称相似",
+        "包含相同资本品牌词",
+        "普通合伙人关系但未说明管理或控制含义",
+        "外部常识或未进入招股书证据链的信息"
+      ],
+      "singleton_rule": "无可合并证据的组织投资者各自作为独立体系",
+      "natural_person_rule": "独立自然人不计入机构投资体系数；明确属于同一员工认购计划时可计为一个员工计划体系",
+      "required_subcounts": [
+        "all_confirmed_system_count",
+        "confirmed_pevc_system_count",
+        "employee_plan_system_count",
+        "unresolved_system_relation_count"
+      ]
+    }
+  },
+  "investor_classification": {
+    "employee_holding": {
+      "dimension": "投资者身份/投资目的，不替代交易形式",
+      "confirmed_evidence": [
+        "招股书明确披露为员工、董事、监事、高管或核心人员",
+        "招股书明确披露为员工持股平台或员工持股计划",
+        "招股书明确披露股权激励安排"
+      ],
+      "transaction_handling": "通过增资进入仍为增资；通过受让进入仍为股权转让",
+      "pevc_treatment": "员工持股平台不计入PE/VC"
+    },
+    "industrial_investor": {
+      "dimension": "投资者性质/投资目的，不替代交易形式",
+      "statuses": [
+        "INDUSTRIAL_CONFIRMED",
+        "STRATEGIC_CONFIRMED",
+        "INDUSTRIAL_BACKGROUND_ONLY",
+        "INDUSTRIAL_UNRESOLVED"
+      ],
+      "confirmed_evidence": [
+        "招股书明确称战略投资者、产业投资者或产业资本",
+        "招股书同时披露明确业务关系和投资协同目的"
+      ],
+      "insufficient_alone": [
+        "投资者是实体企业",
+        "双方处于同一行业",
+        "主体名称包含行业词",
+        "研究者认为可能存在协同"
+      ]
+    },
+    "pevc": {
+      "dimension": "投资者性质，不替代增资或受让进入方式",
+      "statuses": [
+        "CONFIRMED",
+        "CANDIDATE",
+        "RELATED",
+        "EXCLUDED",
+        "UNRESOLVED"
+      ],
+      "confirmed_evidence": [
+        "招股书明示私募股权基金、创业投资基金、股权投资机构或专业投资业务",
+        "招股书明确披露基金性质及管理关系，足以确认专业股权投资属性"
+      ],
+      "candidate_only": [
+        "仅名称含投资、资本、创投、基金",
+        "仅为有限合伙",
+        "仅在上市前进入"
+      ],
+      "count_rule": "PE/VC核心统计只纳入CONFIRMED；CANDIDATE和RELATED分别披露，不并入确认数",
+      "manager_gp_rule": "管理人或GP作为背景关系记录；除非其本身直接投资，否则不计为发行人直接投资法律主体"
+    }
+  },
+  "value_and_evidence_rules": {
+    "value_natures": [
+      "ORIGINAL_DISCLOSED",
+      "STANDARDIZED",
+      "CALCULATED",
+      "RESEARCH_JUDGMENT"
+    ],
+    "mandatory_evidence_fields": [
+      "company_id",
+      "source_event_id",
+      "pdf_pages",
+      "printed_pages",
+      "original_quote",
+      "evidence_id"
+    ],
+    "calculated_value_fields": [
+      "input_value_ids",
+      "formula",
+      "calculated_value",
+      "calculated_unit",
+      "difference_if_any"
+    ],
+    "unknown_vs_zero": {
+      "UNDISCLOSED": null,
+      "EXPLICIT_ZERO": 0,
+      "rule": "空值与零值具有不同含义，代码和汇总不得互换"
+    }
+  },
+  "review_triggers": [
+    {
+      "trigger_id": "R01",
+      "condition": "无法确认两个事项是否属于同一商业融资安排",
+      "action": "PENDING_REVIEW"
+    },
+    {
+      "trigger_id": "R02",
+      "condition": "只披露新增注册资本，未披露认购总对价",
+      "action": "公司融资金额记UNDISCLOSED，注册资本增加额单独保留"
+    },
+    {
+      "trigger_id": "R03",
+      "condition": "增资和老股转让只披露一揽子总金额且无法拆分",
+      "action": "两个金额字段均不强拆，标记MIXED_AMOUNT_UNRESOLVED"
+    },
+    {
+      "trigger_id": "R04",
+      "condition": "主体只因名称特征疑似PE/VC",
+      "action": "标记CANDIDATE，不进入确认统计"
+    },
+    {
+      "trigger_id": "R05",
+      "condition": "多个主体名称相似但管理/控制关系无招股书证据",
+      "action": "不合并投资体系，标记SYSTEM_RELATION_UNRESOLVED"
+    },
+    {
+      "trigger_id": "R06",
+      "condition": "报告使用的融资事项未进入现有工程化底表",
+      "action": "列为SOURCE_COVERAGE_GAP，后续定点补入，不直接从报告反写事实"
+    },
+    {
+      "trigger_id": "R07",
+      "condition": "分类变化可能改变融资轮次、融资金额或公司排序",
+      "action": "要求二次人工复核并记录影响等级"
+    }
+  ],
+  "output_fields_required_for_step3": [
+    "company_id",
+    "company_name",
+    "source_event_id",
+    "source_transaction_id",
+    "standardized_round_id",
+    "legal_event_type",
+    "transaction_leg_type",
+    "fund_flow_type",
+    "financing_round_status",
+    "company_financing_amount",
+    "company_financing_amount_status",
+    "equity_transfer_amount",
+    "equity_transfer_amount_status",
+    "investor_party_id",
+    "investor_party_name_standardized",
+    "investor_party_nature",
+    "employee_holding_status",
+    "industrial_investor_status",
+    "pevc_status",
+    "investment_system_id",
+    "investment_system_basis",
+    "pdf_pages",
+    "printed_pages",
+    "original_quote",
+    "value_nature",
+    "review_status",
+    "review_reason"
+  ]
+}
