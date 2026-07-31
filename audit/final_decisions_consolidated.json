@@ -1,0 +1,160 @@
+{
+  "version": "week6_unified_caliber_v1.0_20260731",
+  "status": "FINAL_APPROVED",
+  "scope": "八家公司上市前股权融资统一口径与横向复核",
+  "stage03_scan": {
+    "loaded_company_count": 8,
+    "expected_company_count": 8,
+    "open_anomaly_count_at_scan": 5,
+    "manual_review_queue_count_at_scan": 5,
+    "existing_evidence_mapping_fix_count": 19,
+    "automatic_resolution_count": 9,
+    "disclosure_limitation_count": 2,
+    "final_pending_count_after_stage04": 0
+  },
+  "stage04": {
+    "stage": 4,
+    "status": "FINAL_APPROVED",
+    "caliber_version": "v1.0",
+    "review_case_count": 5,
+    "confirmed_count": 5,
+    "pending_count": 0,
+    "data_modification_performed": false,
+    "decisions": [
+      {
+        "review_id": "RQ-0001",
+        "company": "友升股份",
+        "final_decision": "REPORT_UPDATE_REQUIRED_AFTER_ENTITY_CONFIRMATION",
+        "status": "FINAL_APPROVED",
+        "user_confirmation": "用户回查确认：两只金浦基金的基金管理人均为上海金浦智能科技投资管理有限公司，系一致行动人。"
+      },
+      {
+        "review_id": "RQ-0002",
+        "company": "三协电机",
+        "final_decision": "ADD_TWO_DIRECTIONAL_ISSUANCE_EVENTS",
+        "status": "FINAL_APPROVED",
+        "user_confirmation": "用户回查确认：三协电机2022年和2023年两次定向发行事实及统计处理正确。"
+      },
+      {
+        "review_id": "RQ-0003",
+        "company": "友升股份",
+        "final_decision": "PEVC_CONFIRMED",
+        "status": "FINAL_APPROVED",
+        "user_confirmation": "用户回查确认：金浦临港基金与金浦科创基金属于同一管理体系；金浦临港基金满足PE/VC确认标准。"
+      },
+      {
+        "review_id": "RQ-0004",
+        "company": "友升股份",
+        "final_decision": "PEVC_CONFIRMED",
+        "status": "FINAL_APPROVED",
+        "user_confirmation": "用户回查确认：金浦科创基金与金浦临港基金属于同一管理体系；金浦科创基金满足PE/VC确认标准。"
+      },
+      {
+        "review_id": "RQ-0005",
+        "company": "赛分科技",
+        "final_decision": "COMPOUND_HISTORY_EVENT_SEPARATE_TRANSACTION_LEGS",
+        "status": "FINAL_APPROVED",
+        "user_confirmation": "用户回查确认：赛分科技2021年4月事项为一次增资和一次股权转让，融资与转让金额分别统计。"
+      }
+    ]
+  },
+  "stage05": {
+    "stage": 5,
+    "status": "FINAL_APPROVED",
+    "caliber_version": "v1.0",
+    "company_count": 8,
+    "comparison_item_count": 36,
+    "original_report_round_total": 17,
+    "unified_round_total": 18,
+    "round_total_difference": 1,
+    "pending_review_count": 0,
+    "data_modification_performed": false,
+    "decisions": [
+      {
+        "review_id": "S05-RQ-001",
+        "final_decision": "CONFIRM_YUNHAN_2009_CAPITAL_INCREASE_AS_ONE_FINANCING_ROUND",
+        "original_result": "云汉芯城6轮；八家公司17轮",
+        "unified_result": "云汉芯城7轮；八家公司18轮",
+        "user_confirmation": "2009年12月为一个复合历史事件，包含一次股权转让和一次增资；融资轮次只计增资部分1轮。",
+        "status": "FINAL_APPROVED"
+      },
+      {
+        "review_id": "S05-RQ-002",
+        "final_decision": "CONFIRM_19_EXISTING_EVIDENCE_MAPPING_FIXES",
+        "original_result": "19项字段未映射或结构化字段缺失",
+        "unified_result": "补齐金额、主体及明确零值字段，并保留披露值/计算值属性",
+        "user_confirmation": "仅补齐统一字段，不视为重新提取或改写招股书原文事实。",
+        "status": "FINAL_APPROVED"
+      },
+      {
+        "review_id": "S05-RQ-003",
+        "final_decision": "CONFIRM_REPORT_MODIFICATION_BOUNDARY",
+        "original_result": "Week 6原比较报告",
+        "unified_result": "主要调整云汉轮次和八家公司总轮次；补充友升主体/体系、三协底表回溯和赛分交易拆分；其他核心结论保持",
+        "user_confirmation": "确认按当前边界在步骤6修改核心成果。",
+        "status": "FINAL_APPROVED"
+      }
+    ]
+  },
+  "stage06": {
+    "stage": 6,
+    "status": "FINAL_APPROVED",
+    "caliber_version": "v1.0",
+    "review_item_count": 4,
+    "confirmed_count": 4,
+    "pending_count": 0,
+    "company_count": 8,
+    "financing_round_total": 18,
+    "yunhan_financing_rounds": 7,
+    "known_company_financing_amount_lower_bound_10k": 173663.59,
+    "known_equity_transfer_amount_lower_bound_10k": 17480.908,
+    "confirmed_pevc_legal_party_record_sum": 16,
+    "confirmed_pevc_investment_system_total": null,
+    "data_modification_scope": "统一指标层及修订研究报告；不覆盖招股书事实层",
+    "decisions": [
+      {
+        "review_id": "S06-RQ-001",
+        "final_decision": "CONFIRM_18_ROUNDS_AND_YUNHAN_7_ROUNDS",
+        "result": "云汉芯城7轮；八家公司合计至少18轮",
+        "scope": "摘要、表1、图1、云汉芯城个案、差异分析和结论",
+        "status": "FINAL_APPROVED"
+      },
+      {
+        "review_id": "S06-RQ-002",
+        "final_decision": "USE_VERIFIABLE_AMOUNT_LOWER_BOUNDS",
+        "result": "公司融资金额下限173,663.59万元；老股转让对价下限17,480.9080万元",
+        "scope": "金额横向指标",
+        "status": "FINAL_APPROVED"
+      },
+      {
+        "review_id": "S06-RQ-003",
+        "final_decision": "PEVC_LEGAL_PARTY_RECORDS_16_NO_SYSTEM_TOTAL",
+        "result": "确认PE/VC法律主体记录16个；暂不汇总投资体系总数",
+        "scope": "PE/VC横向指标",
+        "status": "FINAL_APPROVED"
+      },
+      {
+        "review_id": "S06-RQ-004",
+        "final_decision": "CONFIRM_TARGETED_REPORT_REVISIONS",
+        "result": "三协两轮定向发行；友升2个法律主体/1个体系；赛分增资与股权转让分列",
+        "scope": "三家公司个案、概览及结论",
+        "status": "FINAL_APPROVED"
+      }
+    ]
+  },
+  "final_metrics": {
+    "company_count": 8,
+    "financing_round_total": 18,
+    "yunhan_financing_rounds": 7,
+    "known_company_financing_amount_lower_bound_10k": 173663.59,
+    "known_equity_transfer_amount_lower_bound_10k": 17480.908,
+    "confirmed_pevc_legal_party_record_sum": 16,
+    "confirmed_pevc_investment_system_total": null
+  },
+  "final_boundary": {
+    "prospectus_fact_layer_overwritten": false,
+    "company_financing_amount_is_complete_total": false,
+    "equity_transfer_amount_is_complete_total": false,
+    "pevc_legal_party_equals_investment_system": false
+  }
+}
