@@ -1,0 +1,50 @@
+{
+  "package": "week6_eight_company_financing_unified_final",
+  "status": "FINAL_APPROVED",
+  "data_caliber_version": "v1.0",
+  "submission_mode": "DATA_ONLY",
+  "readme_focus": "TASK_AND_WEEK6_COMPARISON",
+  "weekly_report_in_github": false,
+  "pdf_in_github": false,
+  "docx_in_github": false,
+  "company_count": 8,
+  "financing_round_total": 18,
+  "file_count_excluding_manifest_and_checksums": 7,
+  "files": [
+    {
+      "path": "README.md",
+      "size_bytes": 4441,
+      "sha256": "fec4bf8003ff7b924c2043c601753495192bb25b93781b3baaa26d778ed012bd"
+    },
+    {
+      "path": "audit/final_decisions_consolidated.json",
+      "size_bytes": 6591,
+      "sha256": "016fef0c45fb2c82a136fee1df1d6b60bf99fdfe3088b81c06bfdcac55166668"
+    },
+    {
+      "path": "config/unified_caliber_v1_0.json",
+      "size_bytes": 14675,
+      "sha256": "b7e6ee7d3a8992b2f14000021944bf228772af2cd10c629408a0ccf8f17c057e"
+    },
+    {
+      "path": "data/八家公司统一口径公司指标.csv",
+      "size_bytes": 3262,
+      "sha256": "aca1d5312c915be0f35e11de334254b9a47fd94c038e2d3040d0e9d0d0802e16"
+    },
+    {
+      "path": "data/八家公司统一口径核心指标.json",
+      "size_bytes": 8373,
+      "sha256": "a041b622402e0885c1b926992a2412d1fc0e5e7c5556c93b2903274a950f06ee"
+    },
+    {
+      "path": "data/八家公司统一口径核心指标_最终验收.xlsx",
+      "size_bytes": 21064,
+      "sha256": "8caa17783bbd7579c3cc07ac925a39eba00e5f62671e2375e1e8c6a3c41395e6"
+    },
+    {
+      "path": "scripts/verify_submission.py",
+      "size_bytes": 2911,
+      "sha256": "62d4296ecc1dc5b0bbfe5109af86864260b84dc55d06a07bb48bea05c1806085"
+    }
+  ]
+}
